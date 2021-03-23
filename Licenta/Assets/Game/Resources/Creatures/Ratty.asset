@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d608d14997c445abc24df048b1201, type: 3}
+  m_Name: Ratty
+  m_EditorClassIdentifier: 
+  name: Ratty
+  description: 
+  frontsprite: {fileID: 21300000, guid: b5c7a6c196a81db449d046a2671dc58a, type: 3}
+  backsprite: {fileID: 21300000, guid: b5c7a6c196a81db449d046a2671dc58a, type: 3}
+  type1: 1
+  type2: 0
+  maxHp: 30
+  attack: 56
+  defense: 35
+  spAttack: 25
+  spDefense: 35
+  speed: 72
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: bc523426dfeac1444bb6d776e5084a73, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: c58ebe6c677ff2d40b54df9ef93db74b, type: 2}
+    level: 3
+  - moveBase: {fileID: 11400000, guid: 9a97a064e0e70974c9967e46b2181979, type: 2}
+    level: 5
+  - moveBase: {fileID: 11400000, guid: 1389790f010b1a84ba8ff68b70ef2f5d, type: 2}
+    level: 7

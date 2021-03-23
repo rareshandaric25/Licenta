@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d608d14997c445abc24df048b1201, type: 3}
+  m_Name: PIgy
+  m_EditorClassIdentifier: 
+  name: Pigy
+  description: 
+  frontsprite: {fileID: 21300000, guid: 7a46aa42e89d56c45ba03e9b7d78f384, type: 3}
+  backsprite: {fileID: 21300000, guid: 7a46aa42e89d56c45ba03e9b7d78f384, type: 3}
+  type1: 2
+  type2: 0
+  maxHp: 40
+  attack: 52
+  defense: 43
+  spAttack: 60
+  spDefense: 50
+  speed: 65
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: bc523426dfeac1444bb6d776e5084a73, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: c58ebe6c677ff2d40b54df9ef93db74b, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: 2265a0c2ba2e33e4ebdea6aee15300ea, type: 2}
+    level: 7
