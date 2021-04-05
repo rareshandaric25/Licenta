@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, PartyScreen, BattleOver}
 
@@ -12,6 +13,8 @@ public class BattleSystem : MonoBehaviour
    [SerializeField] BattleUnit enemyUnit;
    [SerializeField] BattleDialogBox dialogBox;
    [SerializeField] PartyScreen partyScreen;
+   [SerializeField] Image playerImage;
+   [SerializeField] Image trainerImage;
 
    public event Action<bool> OnBattleOver;
 
@@ -22,7 +25,12 @@ public class BattleSystem : MonoBehaviour
    int currentMember;
 
    CreatureParty playerParty;
+   CreatureParty trainerParty;
    Creature wildCreature;
+
+   bool isTrainerBattle = false;
+   PlayerController player;
+   TrainerController trainer;
    
    public void StartBattle(CreatureParty playerParty, Creature wildCreature)
    {
@@ -30,18 +38,65 @@ public class BattleSystem : MonoBehaviour
       this.wildCreature = wildCreature;
       StartCoroutine(SetupBattle());
    }
+   
+   public void StartTrainerBattle(CreatureParty playerParty, CreatureParty trainerParty)
+   {
+      this.playerParty = playerParty;
+      this.trainerParty = trainerParty;
 
+      isTrainerBattle = true;
+      player = playerParty.GetComponent<PlayerController>();
+      trainer = trainerParty.GetComponent<TrainerController>();
+      
+      StartCoroutine(SetupBattle());
+   }
+   
    public IEnumerator SetupBattle()
    {
-      playerUnit.Setup(playerParty.GetHeatlyCreature());
-      enemyUnit.Setup(wildCreature);
+      playerUnit.Clear();
+      enemyUnit.Clear();
+      if (!isTrainerBattle)
+      {
+         //Wild Creature battle
+         playerUnit.Setup(playerParty.GetHeatlyCreature()); 
+         enemyUnit.Setup(wildCreature); 
+         
+         dialogBox.SetMovesNames(playerUnit.Creature.Moves);
+         yield return dialogBox.TypeDialog($"A wild {enemyUnit.Creature.Base.Name} appeared.");
+      }
+      else
+      {
+         //Trainer Battle
+         
+         //Show Trainer && Player Sprites
+         playerUnit.gameObject.SetActive(false);
+         enemyUnit.gameObject.SetActive(false);
+         
+         playerImage.gameObject.SetActive(true);
+         trainerImage.gameObject.SetActive(true);
+         playerImage.sprite = player.Sprite;
+         trainerImage.sprite = trainer.Sprite;
 
+         yield return dialogBox.TypeDialog($"{trainer.Name} wants to battle");
+         
+         //Send out first creature of trainer
+         trainerImage.gameObject.SetActive(false);
+         enemyUnit.gameObject.SetActive(true);
+         var enemyCreature = trainerParty.GetHeatlyCreature();
+         enemyUnit.Setup(enemyCreature);
+         yield return dialogBox.TypeDialog($"{trainer.Name} send out {enemyCreature.Base.Name}");
+
+         //Send out first creature of player
+         playerImage.gameObject.SetActive(false);
+         playerUnit.gameObject.SetActive(true);
+         var playerCreature = playerParty.GetHeatlyCreature();
+         playerUnit.Setup(playerCreature);
+         yield return dialogBox.TypeDialog($"Go {playerCreature.Base.Name}");
+         dialogBox.SetMovesNames(playerUnit.Creature.Moves);
+         
+      }
+      
       partyScreen.Init();
-      
-      dialogBox.SetMovesNames(playerUnit.Creature.Moves);
-      
-      yield return dialogBox.TypeDialog($"A wild {enemyUnit.Creature.Base.Name} appeared.");
-
       ActionSelection();
    }
    
@@ -267,8 +322,19 @@ public class BattleSystem : MonoBehaviour
          else 
             BattleOver(false);
       }
-      else 
-         BattleOver(true);
+      else
+      {
+         if(!isTrainerBattle)
+            BattleOver(true);
+         else
+         {
+            var nextCreature = trainerParty.GetHeatlyCreature();
+            if (nextCreature != null)
+               StartCoroutine(SendNextTrainerCreature(nextCreature));
+            else
+               BattleOver(true);
+         }
+      }
    }
 
    IEnumerator ShowDamageDetails(DamageDetails damageDetails )
@@ -436,6 +502,16 @@ public class BattleSystem : MonoBehaviour
       dialogBox.SetMovesNames(newCreature.Moves);
       yield return dialogBox.TypeDialog($"Go {newCreature.Base.Name}!");
 
+      state = BattleState.RunningTurn;
+   }
+
+   IEnumerator SendNextTrainerCreature(Creature nextCreature)
+   {
+      state = BattleState.Busy;
+      
+      enemyUnit.Setup(nextCreature);
+      yield return dialogBox.TypeDialog($"{trainer.Name} send out {nextCreature.Base.Name}");
+      
       state = BattleState.RunningTurn;
    }
    
