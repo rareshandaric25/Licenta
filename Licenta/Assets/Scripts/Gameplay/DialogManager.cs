@@ -25,7 +25,7 @@ public class DialogManager : MonoBehaviour
     int currentLine = 0;
     bool isTyping;
 
-    public bool IsShowing { get; set; }
+    public bool IsShowing { get; private set; }
 
     public IEnumerator ShowDialog(Dialog dialog, Action onFinished=null)
     {
@@ -56,7 +56,7 @@ public class DialogManager : MonoBehaviour
                 currentLine = 0;
                 IsShowing = false;
                 dialogBox.SetActive(false);
-                onDialogFinished.Invoke();
+                onDialogFinished?.Invoke();
                 OnCloseDialog?.Invoke();
             }
         }

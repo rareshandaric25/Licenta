@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour
         
         battleSystem.StartBattle(playerParty,wildCreature);
     }
+
+    TrainerController trainer;
     
     public void StartTrainerBattle(TrainerController trainer)
     {
@@ -66,14 +68,21 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
+        this.trainer = trainer;
         var playerParty = playerController.GetComponent<CreatureParty>();
         var trainerParty = trainer.GetComponent<CreatureParty>();
 
-        battleSystem.StartTrainerBattle(playerParty,trainerParty);
+        battleSystem.StartTrainerBattle(playerParty, trainerParty);
     }
 
     void EndBattle(bool won)
     {
+        if (trainer != null && won == true)
+        {
+            trainer.BattleLost();
+            trainer = null;
+        }
+        
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);

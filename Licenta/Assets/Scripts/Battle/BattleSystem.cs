@@ -277,6 +277,7 @@ public class BattleSystem : MonoBehaviour
          yield return new WaitForSeconds(2f);
          
          CheckForBattleOver(sourceUnit);
+         yield return new WaitUntil(() => state == BattleState.RunningTurn);
       }
    }
 

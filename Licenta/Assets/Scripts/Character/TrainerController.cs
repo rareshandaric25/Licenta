@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrainerController : MonoBehaviour
+public class TrainerController : MonoBehaviour, Interactable
 {
     [SerializeField] string name;
     [SerializeField] Sprite sprite;
     [SerializeField] Dialog dialog;
+    [SerializeField] Dialog dialogAfterBattle;
     [SerializeField] GameObject exclamation;
     [SerializeField] GameObject fov;
 
+    //State
+    bool battleLost = false;
+    
     Character character;
     void Awake()
     {
@@ -23,11 +27,28 @@ public class TrainerController : MonoBehaviour
         SetFovRotation(character.Animator.DefaultDirection);
     }
     
+    public void Interact(Transform initiator)
+    {
+        character.LookTowards(initiator.position);
+
+        if (!battleLost)
+        {
+            StartCoroutine(DialogManager.Instance.ShowDialog(dialog, () =>
+            {
+                GameController.Instance.StartTrainerBattle(this);
+            }));
+        }
+        else
+        {
+            StartCoroutine(DialogManager.Instance.ShowDialog(dialogAfterBattle));
+        }
+    }
+
     public IEnumerator TriggerTrainerBattle(PlayerController player)
     {
         //Show Exclamation
         exclamation.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         exclamation.SetActive(false);
 
         //Walk towards the player
@@ -42,6 +63,12 @@ public class TrainerController : MonoBehaviour
         {
             GameController.Instance.StartTrainerBattle(this);
         }));
+    }
+
+    public void BattleLost()
+    {
+        battleLost = true;
+        fov.gameObject.SetActive(false);
     }
 
     public void SetFovRotation(FacingDirection dir)
@@ -59,4 +86,5 @@ public class TrainerController : MonoBehaviour
     
     public string Name => name;
     public Sprite Sprite => sprite;
+    
 }
