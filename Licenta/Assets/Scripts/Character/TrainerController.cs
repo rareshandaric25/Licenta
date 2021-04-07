@@ -26,7 +26,12 @@ public class TrainerController : MonoBehaviour, Interactable
     {
         SetFovRotation(character.Animator.DefaultDirection);
     }
-    
+
+    void Update()
+    {
+        character.HandleUpdate();
+    }
+
     public void Interact(Transform initiator)
     {
         character.LookTowards(initiator.position);
