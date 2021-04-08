@@ -10,6 +10,14 @@ public class Creature
 {
    [SerializeField] CreatureBase _creature;
    [SerializeField] int level;
+
+   public Creature(CreatureBase pBase,int plevel)
+   {
+      _creature = pBase;
+      level = plevel;
+      
+      Init();
+   }
    public CreatureBase Base {
       get
       {
@@ -33,7 +41,7 @@ public class Creature
    public Condition Status { get; private set; }
    public int StatusTime { get; set; }
 
-   public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
+   public Queue<string> StatusChanges { get; private set; }
    public bool HpChanged { get; set; }
    public event Action OnStatusChanged; 
 
@@ -54,7 +62,10 @@ public class Creature
       
       CalculateStats();
       HP = MaxHp;
+
+      StatusChanges = new Queue<string>();
       ResetStatBoost();
+      Status = null;
    }
 
    void CalculateStats()
