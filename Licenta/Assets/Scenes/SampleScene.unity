@@ -279,6 +279,8 @@ MonoBehaviour:
   partyScreen: {fileID: 1127185755}
   playerImage: {fileID: 1314284905}
   trainerImage: {fileID: 1536065902}
+  creatureBallSprite: {fileID: 4376129460783898067, guid: f41d895a9519a854a9b572fcfa9fd2ed,
+    type: 3}
 --- !u!1001 &28840202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3861,8 +3863,6 @@ MonoBehaviour:
     level: 7
   - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
     level: 2
-  - _creature: {fileID: 11400000, guid: 411ebdefc8a282d4a93dee4180265171, type: 2}
-    level: 10
 --- !u!114 &1313481143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4101,7 +4101,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -532401843
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1344250827
@@ -16315,8 +16315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatures:
-  - _creature: {fileID: 11400000, guid: c74802ff191ba64499a4effb3dbff17b, type: 2}
-    level: 6
+  - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
+    level: 8
   - _creature: {fileID: 11400000, guid: c74802ff191ba64499a4effb3dbff17b, type: 2}
     level: 6
 --- !u!1 &1599515157
