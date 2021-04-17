@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class BattleHud : MonoBehaviour
    [SerializeField] Text levelText;
    [SerializeField] Text statusText;
    [SerializeField] HPBar hpBar;
+   [SerializeField] GameObject expBar;
 
    [SerializeField] Color psnColor;
    [SerializeField] Color slpColor;
@@ -22,9 +24,11 @@ public class BattleHud : MonoBehaviour
    public void SetData(Creature creature)
    {
       _creature = creature;
+      
       nameText.text = creature.Base.Name;
-      levelText.text = "Lvl " + creature.Level;
+      SetLevel();
       hpBar.SetHP((float) creature.HP / creature.MaxHp);
+      SetExp();
 
       statusColors = new Dictionary<ConditionID, Color>()
       {
@@ -51,6 +55,42 @@ public class BattleHud : MonoBehaviour
       }
    }
 
+   public void SetLevel()
+   {
+      levelText.text = "Lvl " + _creature.Level;
+   }
+   
+   public void SetExp()
+   {
+      //Only the player has exp bar
+      if (expBar == null) return;
+    
+      float normalizedExp = getNormalizedExp();
+      expBar.transform.localScale = new Vector3(normalizedExp, 1, 1);
+     
+   }
+   
+   public IEnumerator SetExpSmooth(bool reset=false)
+   {
+       //Only the player has exp bar
+       if (expBar == null) yield break;
+
+       if (reset)
+          expBar.transform.localScale = new Vector3(0, 1, 1);
+       
+       float normalizedExp = getNormalizedExp();
+       yield return expBar.transform.DOScaleX(normalizedExp, 1.5f).WaitForCompletion();
+   }
+
+   float getNormalizedExp()
+   {
+      int currLevelExp = _creature.Base.GetExpForLevel(_creature.Level);
+      int nextLevelExp = _creature.Base.GetExpForLevel(_creature.Level + 1);
+
+      float normalizedExp = (float)(_creature.Exp - currLevelExp) / (nextLevelExp - currLevelExp);
+      return Mathf.Clamp01(normalizedExp);
+   }
+   
    public IEnumerator UpdateHP()
    {
       if(_creature.HpChanged)

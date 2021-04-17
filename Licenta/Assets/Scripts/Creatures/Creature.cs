@@ -33,6 +33,7 @@ public class Creature
       }
    }
 
+   public int Exp { get; set; }
    public int HP { get; set; }
    public List<Move> Moves { get; set; }
    public Move CurrentMove { get; set; }
@@ -56,9 +57,11 @@ public class Creature
          if (move.Level <= Level)
             Moves.Add(new Move(move.Base));
 
-         if (Moves.Count >= 4)
+         if (Moves.Count >= CreatureBase.MaxNumOfMoves)
             break;
       }
+
+      Exp = Base.GetExpForLevel(Level);
       
       CalculateStats();
       HP = MaxHp;
@@ -128,6 +131,29 @@ public class Creature
       }
    }
 
+   public bool CheckForLevelUp()
+   {
+      if (Exp > Base.GetExpForLevel(level + 1))
+      {
+         ++level;
+         return true;
+      }
+      return false;
+   }
+
+   public LearnableMove GetLearnableMoveAtCurrLevel()
+   {
+      return Base.LearnableMoves.Where(x => x.Level == level).FirstOrDefault();
+   }
+
+   public void LearnMove(LearnableMove moveToLearn)
+   {
+      if (Moves.Count > CreatureBase.MaxNumOfMoves)
+         return;
+      
+      Moves.Add(new Move(moveToLearn.Base));
+   }
+   
    public int Attack {
       get { return GetStat(Stat.Attack); }
    }

@@ -44,6 +44,7 @@ public class BattleSystem : MonoBehaviour
       this.playerParty = playerParty;
       this.wildCreature = wildCreature;
       player = playerParty.GetComponent<PlayerController>();
+      isTrainerBattle = false;
       
       StartCoroutine(SetupBattle());
    }
@@ -258,11 +259,7 @@ public class BattleSystem : MonoBehaviour
 
          if (targetUnit.Creature.HP <= 0)
          {
-            yield return dialogBox.TypeDialog($"{targetUnit.Creature.Base.Name} fainted");
-            targetUnit.PlayFaintAnimation();
-            yield return new WaitForSeconds(2f);
-
-            CheckForBattleOver(targetUnit);
+            yield return HandleCreatureFainted(targetUnit);
          }
       }
       else
@@ -304,11 +301,7 @@ public class BattleSystem : MonoBehaviour
       yield return sourceUnit.Hud.UpdateHP();
       if (sourceUnit.Creature.HP <= 0)
       {
-         yield return dialogBox.TypeDialog($"{sourceUnit.Creature.Base.Name} fainted");
-         sourceUnit.PlayFaintAnimation();
-         yield return new WaitForSeconds(2f);
-
-         CheckForBattleOver(sourceUnit);
+         yield return HandleCreatureFainted(sourceUnit);
          yield return new WaitUntil(() => state == BattleState.RunningTurn);
       }
    }
@@ -344,6 +337,55 @@ public class BattleSystem : MonoBehaviour
          var message = creature.StatusChanges.Dequeue();
          yield return dialogBox.TypeDialog(message);
       }
+   }
+
+   IEnumerator HandleCreatureFainted(BattleUnit faintedUnit)
+   {
+      yield return dialogBox.TypeDialog($"{faintedUnit.Creature.Base.Name} fainted");
+      faintedUnit.PlayFaintAnimation();
+      yield return new WaitForSeconds(2f);
+
+      if (!faintedUnit.IsPlayerUnit)
+      {
+         //Exp gain
+         int expYield = faintedUnit.Creature.Base.ExpYield;
+         int enemyLevel = faintedUnit.Creature.Level;
+         float trainerBonus = (isTrainerBattle) ? 1.5f : 1f;
+         
+         int expGain = Mathf.FloorToInt((expYield * enemyLevel * trainerBonus) / 7);
+         playerUnit.Creature.Exp += expGain;
+         yield return dialogBox.TypeDialog($"{playerUnit.Creature.Base.Name} gained {expGain} exp");
+         yield return playerUnit.Hud.SetExpSmooth();
+         
+         //Check lvl up
+         while (playerUnit.Creature.CheckForLevelUp())
+         {
+            playerUnit.Hud.SetLevel();
+            yield return dialogBox.TypeDialog($"{playerUnit.Creature.Base.Name} grew to level {playerUnit.Creature.Level}");
+            
+            //Try to learn a new move
+            var newMove = playerUnit.Creature.GetLearnableMoveAtCurrLevel();
+            if (newMove != null)
+            {
+               if (playerUnit.Creature.Moves.Count < CreatureBase.MaxNumOfMoves)
+               {
+                  playerUnit.Creature.LearnMove(newMove);
+                  yield return dialogBox.TypeDialog($"{playerUnit.Creature.Base.Name} learned {newMove.Base.Name}");
+                  dialogBox.SetMovesNames(playerUnit.Creature.Moves);
+               }
+               else
+               {
+                  // todo: forget move
+               }
+            }
+            
+            yield return playerUnit.Hud.SetExpSmooth(true);
+         }
+            
+         yield return new WaitForSeconds(1f);
+      }
+      
+      CheckForBattleOver(faintedUnit);
    }
 
    void CheckForBattleOver(BattleUnit faintedUnit)
