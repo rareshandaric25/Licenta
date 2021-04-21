@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Battle\BattleSystem.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleUnit.cs" />
      <Compile Include="Assets\Scripts\Battle\HPBar.cs" />
+     <Compile Include="Assets\Scripts\Battle\MoveSelectionUi.cs" />
      <Compile Include="Assets\Scripts\Battle\PartyMemberUi.cs" />
      <Compile Include="Assets\Scripts\Battle\PartyScreen.cs" />
      <Compile Include="Assets\Scripts\Character\Character.cs" />
