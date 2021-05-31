@@ -174,8 +174,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1746306231
-  m_SortingLayer: 2
+  m_SortingLayerID: -1246434889
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 5955781087917997448, guid: e79ddd82f3c38a542ae15d7ef9d81852,
     type: 3}
@@ -236,7 +236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1085047256}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &594399216
 CompositeCollider2D:
@@ -2331,9 +2331,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1418381226}
-  - {fileID: 1330414381}
   - {fileID: 594399215}
   - {fileID: 1545337683}
+  - {fileID: 1330414381}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2367,7 +2367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1085047256}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1330414382
 TilemapRenderer:
@@ -8969,7 +8969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1085047256}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!66 &1545337684
 CompositeCollider2D:
@@ -10474,7 +10474,7 @@ MonoBehaviour:
   creatures:
   - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
     level: 8
-  - _creature: {fileID: 11400000, guid: c74802ff191ba64499a4effb3dbff17b, type: 2}
+  - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
     level: 6
 --- !u!1 &1988329964
 GameObject:

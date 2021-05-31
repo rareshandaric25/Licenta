@@ -104,7 +104,7 @@ public class BattleSystem : MonoBehaviour
          playerUnit.gameObject.SetActive(true);
          var playerCreature = playerParty.GetHeatlyCreature();
          playerUnit.Setup(playerCreature);
-         yield return dialogBox.TypeDialog($"Go {playerCreature.Base.Name}");
+         yield return dialogBox.TypeDialog($"Go {playerCreature.Base.Name}!");
          dialogBox.SetMovesNames(playerUnit.Creature.Moves);
 
       }
@@ -212,11 +212,26 @@ public class BattleSystem : MonoBehaviour
          }
          else if (playerAction == BattleAction.UseItem)
          {
+            if (isTrainerBattle)
+            {
+               yield return dialogBox.TypeDialog($"Can't catch a trainer's creature");
+               state = BattleState.RunningTurn;
+               ActionSelection();
+               yield break;
+            }
             dialogBox.EnableActionSelector(false);
             yield return ThrowCreatureBall();
          }
          else if (playerAction == BattleAction.Run)
          {
+            if (isTrainerBattle)
+            {
+               yield return dialogBox.TypeDialog($"You can't run from a trainer battle");
+               state = BattleState.RunningTurn;
+               ActionSelection();
+               yield break;
+               
+            }
             yield return TryToEscape();
          }
 
@@ -701,13 +716,6 @@ public class BattleSystem : MonoBehaviour
    {
       state = BattleState.Busy;
 
-      if (isTrainerBattle)
-      {
-         yield return dialogBox.TypeDialog($"Can't catch a trainer's creature");
-         state = BattleState.RunningTurn;
-         yield break;
-      }
-
       yield return dialogBox.TypeDialog($"{player.Name} used creature ball!");
 
       var creatureBallObj = Instantiate(creatureBallSprite, playerUnit.transform.position - new Vector3(2,0), Quaternion.identity);
@@ -780,12 +788,6 @@ public class BattleSystem : MonoBehaviour
    IEnumerator TryToEscape()
    {
       state = BattleState.Busy;
-      if (isTrainerBattle)
-      {
-         yield return dialogBox.TypeDialog($"You can't run from a trainer battle");
-         state = BattleState.RunningTurn;
-         yield break;
-      }
 
       ++escapeAttempts;
       

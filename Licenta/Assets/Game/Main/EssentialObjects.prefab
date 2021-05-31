@@ -613,7 +613,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bag
+  m_Text: 'Catch
+
+'
 --- !u!1 &5405802798549879570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5405802799070196517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4586,6 +4588,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -18.985
       objectReference: {fileID: 0}
+    - target: {fileID: 4079182789988593589, guid: 3a2b3086639a81141b17d7f68bcd2a77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -42.449997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079182790259366437, guid: 3a2b3086639a81141b17d7f68bcd2a77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.939003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079182790495774951, guid: 3a2b3086639a81141b17d7f68bcd2a77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 22.700005
+      objectReference: {fileID: 0}
     - target: {fileID: 4079182790564088216, guid: 3a2b3086639a81141b17d7f68bcd2a77,
         type: 3}
       propertyPath: m_Name
@@ -4710,6 +4727,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079182791396873631, guid: 3a2b3086639a81141b17d7f68bcd2a77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 9.170502
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079182791433734161, guid: 3a2b3086639a81141b17d7f68bcd2a77,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15.550003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2b3086639a81141b17d7f68bcd2a77, type: 3}
