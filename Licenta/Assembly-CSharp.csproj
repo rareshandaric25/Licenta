@@ -71,6 +71,11 @@
      <Compile Include="Assets\Scripts\Character\NPCController.cs" />
      <Compile Include="Assets\Scripts\Character\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Character\TrainerController.cs" />
+     <Compile Include="Assets\Scripts\Character\TrainerFov.cs" />
+     <Compile Include="Assets\Scripts\Core\EssentialObjects.cs" />
+     <Compile Include="Assets\Scripts\Core\EssentialObjectsSpawner.cs" />
+     <Compile Include="Assets\Scripts\Core\Fader.cs" />
+     <Compile Include="Assets\Scripts\Core\InvisibleTilemap.cs" />
      <Compile Include="Assets\Scripts\Creatures\Condition.cs" />
      <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
      <Compile Include="Assets\Scripts\Creatures\CreatureBase.cs" />
@@ -82,8 +87,13 @@
      <Compile Include="Assets\Scripts\Gameplay\Dialog.cs" />
      <Compile Include="Assets\Scripts\Gameplay\DialogManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\GameLayers.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\IPlayerTriggerable.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\LongGrass.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MapArea.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\LocationPortal.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\SceneDetails.cs" />
      <Compile Include="Assets\Scripts\Util\SpriteAnimator.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/LicentaGit/Licenta/Licenta/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

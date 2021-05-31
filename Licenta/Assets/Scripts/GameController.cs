@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState{ FreeRoam, Battle, Dialog, Cutscene}
+public enum GameState{ FreeRoam, Battle, Dialog, Cutscene, Paused}
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
     [SerializeField] Camera worldCamera;
     
     GameState state;
+
+    GameState stateB4Puase;
+
+    public SceneDetails CurrentScene { get; private set; }
+    public SceneDetails PrevScene { get; private set; }
 
     public static GameController Instance { get; private set; }
 
@@ -23,19 +28,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        playerController.OnEncountered += StartBattle;
         battleSystem.OnBattleOver += EndBattle;
 
-        playerController.OnEnterTrainersView += (Collider2D trainerCollider) =>
-        {
-            var trainer = trainerCollider.GetComponentInParent<TrainerController>();
-            if (trainer != null)
-            {
-                state = GameState.Cutscene;
-                StartCoroutine(trainer.TriggerTrainerBattle(playerController));
-            }
-        };
-        
         DialogManager.Instance.OnShowDialog += () =>
         {
             state = GameState.Dialog;
@@ -48,14 +42,27 @@ public class GameController : MonoBehaviour
         };
     }
 
-    void StartBattle()
+    public void PauseGame(bool pause)
+    {
+        if (pause)
+        {
+            stateB4Puase = state;
+            state = GameState.Paused;
+        }
+        else
+        {
+            state = stateB4Puase;
+        }
+    }
+
+    public void StartBattle()
     {
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
         var playerParty = playerController.GetComponent<CreatureParty>();
-        var wildCreature = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildCreature();
+        var wildCreature = CurrentScene.GetComponent<MapArea>().GetRandomWildCreature();
 
         var wildCreatureCopy = new Creature(wildCreature.Base, wildCreature.Level);
         
@@ -75,6 +82,12 @@ public class GameController : MonoBehaviour
         var trainerParty = trainer.GetComponent<CreatureParty>();
 
         battleSystem.StartTrainerBattle(playerParty, trainerParty);
+    }
+
+    public void OnEnterTrainersView(TrainerController trainer)
+    {
+        state = GameState.Cutscene;
+        StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 
     void EndBattle(bool won)
@@ -103,5 +116,11 @@ public class GameController : MonoBehaviour
         {
             DialogManager.Instance.HandleUpdate();
         }
+    }
+
+    public void SetCurrentScene(SceneDetails currScene)
+    {
+        PrevScene = CurrentScene;
+        CurrentScene = currScene;
     }
 }
