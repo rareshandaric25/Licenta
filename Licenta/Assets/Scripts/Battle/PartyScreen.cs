@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,13 @@ public class PartyScreen : MonoBehaviour
     PartyMemberUi[] memberSlots;
     List<Creature> creatures;
 
+    int selection = 0;
+
+    public Creature Selectedmember => creatures[selection];
+
+    //Party screen can be called from different states(calledFrom = prevState before we open the party screen)
+    public BattleState? CalledFrom { get; set; }
+    
     public void Init()
     {
         memberSlots = GetComponentsInChildren<PartyMemberUi>(true);
@@ -32,6 +40,32 @@ public class PartyScreen : MonoBehaviour
         messageText.text = "Choose a Creature";
     }
 
+       public void HandleUpdate(Action onSelected, Action onBack)
+       {
+          if (Input.GetKeyDown(KeyCode.RightArrow))
+             ++selection;
+          else if (Input.GetKeyDown(KeyCode.LeftArrow))
+             --selection;
+          else if (Input.GetKeyDown(KeyCode.DownArrow))
+             selection += 2;
+          else if (Input.GetKeyDown(KeyCode.UpArrow))
+             selection -= 2;
+    
+          selection = Mathf.Clamp(selection, 0, creatures.Count - 1);
+          
+          UpdateMemberSelection(selection);
+    
+          if (Input.GetKeyDown(KeyCode.Z))
+          {
+             onSelected?.Invoke();
+          }
+    
+          if (Input.GetKeyDown(KeyCode.X))
+          {
+              onBack.Invoke();
+          }
+       }
+       
     public void UpdateMemberSelection(int selectedMember)
     {
         for (int i = 0; i < creatures.Count; i++)
