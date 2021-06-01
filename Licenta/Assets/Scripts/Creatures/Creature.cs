@@ -83,6 +83,11 @@ public class Creature
       MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
    }
 
+   void resetHp()
+   {
+      HP = MaxHp;
+   }
+   
    void ResetStatBoost()
    {
       StatBoosts = new Dictionary<Stat, int>()
@@ -253,8 +258,8 @@ public class Creature
    public void OnBattleOver()
    {
       ResetStatBoost();
+      resetHp();
    }
-   
 }
  public class DamageDetails
    {

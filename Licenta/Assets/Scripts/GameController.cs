@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     
     GameState state;
 
-    GameState stateB4Puase;
+    GameState stateB4Pause;
 
     public SceneDetails CurrentScene { get; private set; }
     public SceneDetails PrevScene { get; private set; }
@@ -46,12 +46,12 @@ public class GameController : MonoBehaviour
     {
         if (pause)
         {
-            stateB4Puase = state;
+            stateB4Pause = state;
             state = GameState.Paused;
         }
         else
         {
-            state = stateB4Puase;
+            state = stateB4Pause;
         }
     }
 
