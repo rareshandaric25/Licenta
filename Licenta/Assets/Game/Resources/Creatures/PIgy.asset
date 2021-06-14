@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1d608d14997c445abc24df048b1201, type: 3}
-  m_Name: PIgy
+  m_Name: Pigy
   m_EditorClassIdentifier: 
   name: Pigy
   description: 
@@ -24,7 +24,7 @@ MonoBehaviour:
   spAttack: 60
   spDefense: 50
   speed: 65
-  expYield: 60
+  expYield: 200
   growthRate: 1
   catchRate: 255
   learnableMoves:

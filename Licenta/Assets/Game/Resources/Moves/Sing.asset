@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sing
   description: 
-  type: 0
+  type: 1
   power: 0
   accuracy: 55
   alwaysHits: 0
   pp: 20
+  priority: 0
   category: 2
   effects:
     boosts: []

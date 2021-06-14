@@ -259,6 +259,10 @@ public class Creature
    {
       ResetStatBoost();
       resetHp();
+      foreach (var move in Moves)
+      {
+         move.PP = move.Base.PP;
+      }
    }
 }
  public class DamageDetails

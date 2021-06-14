@@ -251,8 +251,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildCretures:
-  - _creature: {fileID: 11400000, guid: 9985e25bcbcfe5948b6262ebaf3f4b60, type: 2}
-    level: 10
+  - _creature: {fileID: 11400000, guid: 2c0166ff50c5d0442be961eb5bf181b2, type: 2}
+    level: 8
+  - _creature: {fileID: 11400000, guid: 2c0166ff50c5d0442be961eb5bf181b2, type: 2}
+    level: 9
+  - _creature: {fileID: 11400000, guid: 411ebdefc8a282d4a93dee4180265171, type: 2}
+    level: 9
+  - _creature: {fileID: 11400000, guid: 2c0166ff50c5d0442be961eb5bf181b2, type: 2}
+    level: 8
 --- !u!1 &725631045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2561582281446753792, guid: 27bf168fb4c06ec48ac14e99c6014cc1,
@@ -273,6 +279,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wildCretures:
   - _creature: {fileID: 11400000, guid: 45f05986ffade4f4cb7205c75aa87d8a, type: 2}
+    level: 10
+  - _creature: {fileID: 11400000, guid: 45f05986ffade4f4cb7205c75aa87d8a, type: 2}
+    level: 9
+  - _creature: {fileID: 11400000, guid: e3b76d706ccf9c14cb08b2c7bede0fa3, type: 2}
+    level: 10
+  - _creature: {fileID: 11400000, guid: e3b76d706ccf9c14cb08b2c7bede0fa3, type: 2}
     level: 10
 --- !u!114 &902870343 stripped
 MonoBehaviour:
@@ -306,7 +318,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wildCretures:
   - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
-    level: 10
+    level: 7
+  - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
+    level: 6
+  - _creature: {fileID: 11400000, guid: c74802ff191ba64499a4effb3dbff17b, type: 2}
+    level: 6
+  - _creature: {fileID: 11400000, guid: c74802ff191ba64499a4effb3dbff17b, type: 2}
+    level: 7
+  - _creature: {fileID: 11400000, guid: d5abc940b10b80246a62dbb2ccecbba2, type: 2}
+    level: 7
+  - _creature: {fileID: 11400000, guid: d5abc940b10b80246a62dbb2ccecbba2, type: 2}
+    level: 6
 --- !u!114 &1287774789 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2561582281446753798, guid: 27bf168fb4c06ec48ac14e99c6014cc1,

@@ -727,6 +727,7 @@ public class BattleSystem : MonoBehaviour
          yield return dialogBox.TypeDialog($"{enemyUnit.Creature.Base.Name} has been added to your party");
          
          Destroy(creatureBall);
+         yield return HandleCreatureFainted(enemyUnit);
          BattleOver(true);
       }
       else

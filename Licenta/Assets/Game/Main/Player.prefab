@@ -117,15 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatures:
   - _creature: {fileID: 11400000, guid: 9985e25bcbcfe5948b6262ebaf3f4b60, type: 2}
-    level: 12
-  - _creature: {fileID: 11400000, guid: 45f05986ffade4f4cb7205c75aa87d8a, type: 2}
-    level: 10
-  - _creature: {fileID: 11400000, guid: 2c0166ff50c5d0442be961eb5bf181b2, type: 2}
-    level: 9
-  - _creature: {fileID: 11400000, guid: 411ebdefc8a282d4a93dee4180265171, type: 2}
-    level: 7
-  - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
-    level: 2
+    level: 8
 --- !u!114 &7382934475569727320
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d608d14997c445abc24df048b1201, type: 3}
+  m_Name: Sherk
+  m_EditorClassIdentifier: 
+  name: Sherk
+  description: 
+  frontsprite: {fileID: 21300000, guid: 355c6aa3bb2ec434f973847e92c22998, type: 3}
+  backsprite: {fileID: 21300000, guid: 355c6aa3bb2ec434f973847e92c22998, type: 3}
+  type1: 13
+  type2: 0
+  maxHp: 40
+  attack: 80
+  defense: 100
+  spAttack: 30
+  spDefense: 30
+  speed: 20
+  expYield: 200
+  growthRate: 0
+  catchRate: 255
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: aba90fb14e4a41f4aacc7ac34bce44df, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 63137fcb0d1cc5740b621acf8bf0d88c, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: ce871ebb5fd18d24e998fc627f55ebc3, type: 2}
+    level: 10
+  - moveBase: {fileID: 11400000, guid: fee3f36ca3a081e4eb6296fc2d4e9c75, type: 2}
+    level: 16

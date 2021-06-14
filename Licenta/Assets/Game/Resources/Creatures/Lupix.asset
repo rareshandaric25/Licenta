@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d608d14997c445abc24df048b1201, type: 3}
+  m_Name: Lupix
+  m_EditorClassIdentifier: 
+  name: Lupix
+  description: 
+  frontsprite: {fileID: 21300000, guid: 2064891c2fd2f504e86b70f96546b621, type: 3}
+  backsprite: {fileID: 21300000, guid: 2064891c2fd2f504e86b70f96546b621, type: 3}
+  type1: 6
+  type2: 0
+  maxHp: 38
+  attack: 41
+  defense: 40
+  spAttack: 50
+  spDefense: 65
+  speed: 65
+  expYield: 200
+  growthRate: 0
+  catchRate: 255
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: b954548ab38a54a40bb8288529e78456, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: ef41fcbfefd01d043b13e294e028c350, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 2fc983c6ad2ce864095f8f7c583891ab, type: 2}
+    level: 8
+  - moveBase: {fileID: 11400000, guid: 6148c5e339c515247960060794e86fa9, type: 2}
+    level: 16
+  - moveBase: {fileID: 11400000, guid: aba90fb14e4a41f4aacc7ac34bce44df, type: 2}
+    level: 1

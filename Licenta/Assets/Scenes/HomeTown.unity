@@ -10309,7 +10309,7 @@ MonoBehaviour:
   - {fileID: 7369579285134121275, guid: ae130985ae9f66c4a9a59cda69e5bceb, type: 3}
   - {fileID: -1211714280344312584, guid: ae130985ae9f66c4a9a59cda69e5bceb, type: 3}
   - {fileID: 6842672397523141539, guid: ae130985ae9f66c4a9a59cda69e5bceb, type: 3}
-  defaultDirection: 1
+  defaultDirection: 3
 --- !u!114 &1583486828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10451,7 +10451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583486826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.73, y: 11.22, z: 0}
+  m_LocalPosition: {x: -1.5, y: 11.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1344250828}
@@ -10474,8 +10474,6 @@ MonoBehaviour:
   creatures:
   - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
     level: 8
-  - _creature: {fileID: 11400000, guid: 5e61bdfc2330a7b429a9c0185486d78f, type: 2}
-    level: 6
 --- !u!1 &1988329964
 GameObject:
   m_ObjectHideFlags: 0
